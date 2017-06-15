@@ -7,13 +7,29 @@ LABEL Version="1.1" Description="lava running in docker and ready to run jobs"
 COPY stop.sh .
 COPY start.sh .
 
+# Add backports
+RUN echo "deb http://ftp.debian.org/debian/ jessie-backports main contrib non-free" > /etc/apt/sources.list.d/backports.list && \
+    echo "deb http://ftp.debian.org/debian/ jessie main contrib non-free"           > /etc/apt/sources.list && \
+    echo "deb http://ftp.debian.org/debian/ jessie-updates main contrib non-free"   >> /etc/apt/sources.list &&\
+    echo "deb http://security.debian.org jessie/updates main contrib non-free"         >> /etc/apt/sources.list
+
+
+RUN apt-get update && apt-get install  -t jessie-backports  -y \
+    debootstrap \
+    wget
+
+RUN wget http://images.validation.linaro.org/production-repo/production-repo.key.asc \
+ && apt-key add production-repo.key.asc \
+ && echo 'deb http://images.validation.linaro.org/production-repo/ sid main' > /etc/apt/sources.list.d/lava.list \
+ && apt-get clean && apt-get update
+
 # Install debian packages used by the container
 # Configure apache to run the lava server
 RUN echo 'lava-server   lava-server/instance-name string lava-docker-instance' | debconf-set-selections \
  && echo 'locales locales/locales_to_be_generated multiselect C.UTF-8 UTF-8, en_US.UTF-8 UTF-8 ' | debconf-set-selections \
  && echo 'locales locales/default_environment_locale select en_US.UTF-8' | debconf-set-selections \
  && apt-get update \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y -t jessie-backports \
  android-tools-fastboot \
  cu \
  expect \
@@ -32,8 +48,14 @@ RUN echo 'lava-server   lava-server/instance-name string lava-docker-instance' |
  && DEBIAN_FRONTEND=noninteractive apt-get install -y -t jessie-backports \
  lava \
  python-sphinx \
+ qemu-system \
  qemu-system-arm \
+ qemu-system-i386 \
  qemu-system-x86 \
+ qemu-kvm \
+ ser2net \
+ u-boot-tools \
+ python-setproctitle \
  && a2enmod proxy proxy_http \
  && a2dissite 000-default \
  && a2ensite lava-server \
@@ -111,6 +133,9 @@ COPY *.json *.py *.yaml /home/lava/bin/
 # Add misc utilities
 COPY qemu.jinja2 /etc/dispatcher-config/devices/
 
+# Add device dictionaries
+COPY etc/lava-server/dispatcher-config/devices/* /etc/lava-server/dispatcher-config/devices/
+
 # Add  device creation helpers
 COPY add-kvm-to-lava.sh add-qemu-to-lava.sh /home/lava/bin/
 
@@ -119,8 +144,15 @@ EXPOSE 22 80
 CMD /start.sh \
  && /home/lava/bin/add-qemu-to-lava.sh 2 \
  && /home/lava/bin/add-kvm-to-lava.sh 2 \
- && /home/lava/bin/submit.py -k /home/lava/bin/apikey.txt /home/lava/bin/kvm-basic.json \
- && /home/lava/bin/submityaml.py -k /home/lava/bin/apikey.txt /home/lava/bin/job1.yaml \
  && bash
+
+# don't want to submit any job just for fun (this would not give error but possiblt stuck the job queue
+# && /home/lava/bin/submit.py -k /home/lava/bin/apikey.txt /home/lava/bin/kvm-basic.json \
+# && bash
+
+# if we add this line it gets and error and freaks out:
+#&& /home/lava/bin/submityaml.py -k /home/lava/bin/apikey.txt /home/lava/bin/job1.yaml \
+#&& bash
+
 # Following CMD option starts the lava container without a shell and exposes the logs
 #CMD /start.sh && tail -f /var/log/lava-*/*
