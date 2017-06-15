@@ -1,7 +1,8 @@
 #!/bin/bash
 #Create qemu devices and add them to lava-server
 
-lava-server manage pipeline-worker --hostname $(hostname)
+#lava-server manage pipeline-worker --hostname $(hostname)
+lava-server manage workers add $(hostname)
 
 curdir="$(dirname "$(readlink -f "$0")")"
 if [ -f "${curdir}/lava-credentials.txt" ]; then
