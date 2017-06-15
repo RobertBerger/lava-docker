@@ -1,6 +1,5 @@
 IMAGE_NAME=$1
 NETWORK_INTERFACE=$2
-MYHOSTNAME="lava-docker"
 
 if [ $# -lt 2 ];
 then
@@ -9,7 +8,6 @@ then
     echo "+ $0 <docker image> <network interface>" 
     echo "+ $0 reslocal/lava-docker docker0"
     echo "+ $0 reslocal/lava-docker br0"
-    echo "+ $0 reslocal/lava-docker enp3s0"
     exit
 fi
 
@@ -27,14 +25,19 @@ echo "+ docker ps -a"
 docker ps -a
 
 # enable TUN device (for qemu)
-echo "+ sudo modprobe tun"
-sudo modprobe tun
+#echo "+ sudo modprobe tun"
+#sudo modprobe tun
 
 # run the image
 #echo "+ ID=\$(docker run -v ${HOME}/docker-nonvol-scripts:/home/genius/nonvol-scripts -t -i -d -p 22 --privileged ${IMAGE_NAME} /sbin/my_init -- bash -l)"
 #ID=$(docker run -v ${HOME}/docker-nonvol-scripts:/home/genius/nonvol-scripts -t -i -d -p 22 --privileged ${IMAGE_NAME} /sbin/my_init -- bash -l)
-echo "+ ID=\$(docker run -it -v /boot:/boot -v /lib/modules:/lib/modules -v $PWD/fileshare:/opt/fileshare -v /dev/bus/usb:/dev/bus/usb -v /PATH/TO/id_rsa_lava.pub:/home/lava/.ssh/authorized_keys:ro --device=/dev/ttyUSB0 -p 8000:80 -p 2022:22 -h ${MYHOSTNAME} --privileged ${IMAGE_NAME})"
-ID=$(docker run -it -v /boot:/boot -v /lib/modules:/lib/modules -v $PWD/fileshare:/opt/fileshare -v /dev/bus/usb:/dev/bus/usb -v /PATH/TO/id_rsa_lava.pub:/home/lava/.ssh/authorized_keys:ro --device=/dev/ttyUSB0 -p 8000:80 -p 2022:22 -h ${MYHOSTNAME} --privileged ${IMAGE_NAME})
+#echo "+ ID=\$(sudo docker run -it -v /boot:/boot -v /lib/modules:/lib/modules -v $PWD/fileshare:/opt/fileshare -v /dev/bus/usb:/dev/bus/usb -v /PATH/TO/id_rsa_lava.pub:/home/lava/.ssh/authorized_keys:ro --device=/dev/ttyUSB0 -p 8000:80 -p 2022:22 -h reslocal/lava-docker --privileged ${IMAGE})"
+#ID=$(docker run -it -v /boot:/boot -v /lib/modules:/lib/modules -v $PWD/fileshare:/opt/fileshare -v /dev/bus/usb:/dev/bus/usb -v /home/student/.ssh/id_rsa_lava.pub:/home/lava/.ssh/authorized_keys:ro --device=/dev/ttyUSB0 -p 8000:80 -p 2022:22 -h lava-docker --name lava-docker --privileged ${IMAGE_NAME})
+
+ID=$(docker run -i -t -h lava-docker --name lava-docker --entrypoint /bin/bash ${IMAGE_NAME})
+
+
+#ID=$(docker run -it --privileged ${IMAGE_NAME} -- bash -l)
 
 echo "+ ID ${ID}"
 
@@ -42,9 +45,10 @@ echo "+ ID ${ID}"
 PORT=$(docker port ${ID} 22 | awk -F':' '{ print $2 }')
 IPADDR=$(ifconfig ${NETWORK_INTERFACE} | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}')
 echo "+ ssh to the container like this:"
-echo "ssh -X lava@${IPADDR} -p ${PORT}"
+echo "ssh -X genius@${IPADDR} -p ${PORT}"
 
 # let's attach to it:
 echo "+ docker attach ${ID}"
 docker attach ${ID}
 
+#docker exec -i -t ${ID} /bin/bash
