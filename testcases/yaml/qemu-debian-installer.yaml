@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html class="" lang="en">
+<head prefix="og: http://ogp.me/ns#">
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="object" property="og:type">
+<meta content="GitLab" property="og:site_name">
+<meta content="lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml · 92fb9b216df0b9772f7e29407d23c06e4a7af571 · Alexander Couzens / lava-dispatcher" property="og:title">
+<meta content="GitLab Community Edition" property="og:description">
+<meta content="https://code.fe80.eu/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png" property="og:image">
+<meta content="https://code.fe80.eu/lynxis/lava-dispatcher/blob/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml" property="og:url">
+<meta content="summary" property="twitter:card">
+<meta content="lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml · 92fb9b216df0b9772f7e29407d23c06e4a7af571 · Alexander Couzens / lava-dispatcher" property="twitter:title">
+<meta content="GitLab Community Edition" property="twitter:description">
+<meta content="https://code.fe80.eu/assets/gitlab_logo-7ae504fe4f68fdebb3c2034e36621930cd36ea87924c11ff65dbcb8ed50dca58.png" property="twitter:image">
+
+<title>lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml · 92fb9b216df0b9772f7e29407d23c06e4a7af571 · Alexander Couzens / lava-dispatcher · GitLab</title>
+<meta content="GitLab Community Edition" name="description">
+<link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-075eba76312e8421991a0c1f89a89ee81678bcde72319dd3e8047e2a47cd3a42.ico" />
+<link rel="stylesheet" media="all" href="/assets/application-8df89077fb902e2e1f2678ea5d55e51b2c02cb27cd22d3724e18817c2bf48a28.css" />
+<link rel="stylesheet" media="print" href="/assets/print-87bb95ae825e1039facb71c62197dad696049012bb8cfeb76bb57c3a4aa865a6.css" />
+<script src="/assets/webpack/runtime.ae64c8c0a05986b31cec.bundle.js"></script>
+<script src="/assets/webpack/common.c6c2890263be1e87c525.bundle.js"></script>
+<script src="/assets/webpack/main.7a4d858a8bbc542a97e8.bundle.js"></script>
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="Can+fzvUcgNd2DSz5p23xCtD4KhDpl1bvUlENNo/Z020pnakEbkeqGml8MoXMEtin8I53rGPSIVEjGoJGgSd2w==" />
+<meta content="origin-when-cross-origin" name="referrer">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+<meta content="#474D57" name="theme-color">
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/touch-icon-iphone-5a9cee0e8a51212e70b90c87c12f382c428870c0ff67d1eb034d884b78d2dae7.png" />
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/touch-icon-ipad-a6eec6aeb9da138e507593b464fdac213047e49d3093fc30e90d9a995df83ba3.png" sizes="76x76" />
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/touch-icon-iphone-retina-72e2aadf86513a56e050e7f0f2355deaa19cc17ed97bbe5147847f2748e5a3e3.png" sizes="120x120" />
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/touch-icon-ipad-retina-8ebe416f5313483d9c1bc772b5bbe03ecad52a54eba443e5215a22caed2a16a2.png" sizes="152x152" />
+<link color="rgb(226, 67, 41)" href="/assets/logo-d36b5212042cebc89b96df4bf6ac24e43db316143e89926c0db839ff694d2de4.svg" rel="mask-icon">
+<meta content="/assets/msapplication-tile-1196ec67452f618d39cdd85e2e3a542f76574c071051ae7effbfde01710eb17d.png" name="msapplication-TileImage">
+<meta content="#30353E" name="msapplication-TileColor">
+
+
+
+
+</head>
+
+<body class="" data-group="" data-page="projects:blob:show" data-project="lava-dispatcher">
+<script>
+//<![CDATA[
+window.gon={};gon.api_version="v3";gon.default_avatar_url="https:\/\/code.fe80.eu\/assets\/no_avatar-849f9c04a3a0d0cea2424ae97b27447dc64a7dbfae83c036c45b403392f0e8ba.png";gon.max_file_size=10;gon.asset_host=null;gon.relative_url_root="";gon.shortcuts_path="\/help\/shortcuts";gon.user_color_scheme="white";gon.katex_css_url="\/assets\/katex-e46cafe9c3fa73920a7c2c063ee8bb0613e0cf85fd96a3aea25f8419c4bfcfba.css";gon.katex_js_url="\/assets\/katex-04bcf56379fcda0ee7c7a63f71d0fc15ffd2e014d017cd9d51fd6554dfccf40a.js";
+//]]>
+</script>
+<header class="navbar navbar-gitlab with-horizontal-nav">
+<a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
+<div class="container-fluid">
+<div class="header-content">
+<div class="dropdown global-dropdown">
+<button class="global-dropdown-toggle" data-toggle="dropdown" type="button">
+<span class="sr-only">Toggle navigation</span>
+<i class="fa fa-bars"></i>
+</button>
+<div class="dropdown-menu-nav global-dropdown-menu">
+<ul>
+<li class="home"><a title="Projects" href="/explore"><span>
+Projects
+</span>
+</a></li><li class=""><a title="Groups" href="/explore/groups"><span>
+Groups
+</span>
+</a></li><li class=""><a title="Snippets" href="/explore/snippets"><span>
+Snippets
+</span>
+</a></li><li class=""><a title="Help" href="/help"><span>
+Help
+</span>
+</a></li></ul>
+
+</div>
+</div>
+<div class="header-logo">
+<a class="home" title="Dashboard" id="logo" href="/"><svg width="28" height="28" class="tanuki-logo" viewBox="0 0 36 36">
+  <path class="tanuki-shape tanuki-left-ear" fill="#e24329" d="M2 14l9.38 9v-9l-4-12.28c-.205-.632-1.176-.632-1.38 0z"/>
+  <path class="tanuki-shape tanuki-right-ear" fill="#e24329" d="M34 14l-9.38 9v-9l4-12.28c.205-.632 1.176-.632 1.38 0z"/>
+  <path class="tanuki-shape tanuki-nose" fill="#e24329" d="M18,34.38 3,14 33,14 Z"/>
+  <path class="tanuki-shape tanuki-left-eye" fill="#fc6d26" d="M18,34.38 11.38,14 2,14 6,25Z"/>
+  <path class="tanuki-shape tanuki-right-eye" fill="#fc6d26" d="M18,34.38 24.62,14 34,14 30,25Z"/>
+  <path class="tanuki-shape tanuki-left-cheek" fill="#fca326" d="M2 14L.1 20.16c-.18.565 0 1.2.5 1.56l17.42 12.66z"/>
+  <path class="tanuki-shape tanuki-right-cheek" fill="#fca326" d="M34 14l1.9 6.16c.18.565 0 1.2-.5 1.56L18 34.38z"/>
+</svg>
+
+</a></div>
+<div class="title-container">
+<h1 class="title"><a href="/lynxis">Alexander Couzens</a> / <a class="project-item-select-holder" href="/lynxis/lava-dispatcher">lava-dispatcher</a></h1>
+</div>
+<div class="navbar-collapse collapse">
+<ul class="nav navbar-nav">
+<li class="hidden-sm hidden-xs">
+<div class="has-location-badge search search-form">
+<form class="navbar-form" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" /><div class="search-input-container">
+<div class="location-badge">This project</div>
+<div class="search-input-wrap">
+<div class="dropdown" data-url="/search/autocomplete">
+<input type="search" name="search" id="search" placeholder="Search" class="search-input dropdown-menu-toggle no-outline js-search-dashboard-options" spellcheck="false" tabindex="1" autocomplete="off" data-toggle="dropdown" data-issues-path="https://code.fe80.eu/dashboard/issues" data-mr-path="https://code.fe80.eu/dashboard/merge_requests" />
+<div class="dropdown-menu dropdown-select">
+<div class="dropdown-content"><ul>
+<li>
+<a class="is-focused dropdown-menu-empty-link">
+Loading...
+</a>
+</li>
+</ul>
+</div><div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+<i class="search-icon"></i>
+<i class="clear-icon js-clear-input"></i>
+</div>
+</div>
+</div>
+<input type="hidden" name="group_id" id="group_id" class="js-search-group-options" />
+<input type="hidden" name="project_id" id="search_project_id" value="54" class="js-search-project-options" data-project-path="lava-dispatcher" data-name="lava-dispatcher" data-issues-path="/lynxis/lava-dispatcher/issues" data-mr-path="/lynxis/lava-dispatcher/merge_requests" />
+<input type="hidden" name="search_code" id="search_code" value="true" />
+<input type="hidden" name="repository_ref" id="repository_ref" value="92fb9b216df0b9772f7e29407d23c06e4a7af571" />
+
+<div class="search-autocomplete-opts hide" data-autocomplete-path="/search/autocomplete" data-autocomplete-project-id="54" data-autocomplete-project-ref="92fb9b216df0b9772f7e29407d23c06e4a7af571"></div>
+</form></div>
+
+</li>
+<li class="visible-sm-inline-block visible-xs-inline-block">
+<a title="Search" aria-label="Search" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/search"><i class="fa fa-search"></i>
+</a></li>
+<li>
+<div>
+<a class="btn btn-sign-in btn-success" href="/users/sign_in?redirect_to_referer=yes">Sign in</a>
+</div>
+</li>
+</ul>
+</div>
+<button class="navbar-toggle" type="button">
+<span class="sr-only">Toggle navigation</span>
+<i class="fa fa-ellipsis-v"></i>
+</button>
+<div class="js-dropdown-menu-projects">
+<div class="dropdown-menu dropdown-select dropdown-menu-projects">
+<div class="dropdown-title"><span>Go to a project</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+<div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search your projects" autocomplete="off" /><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+<div class="dropdown-content"></div>
+<div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+</div>
+
+</div>
+</div>
+</header>
+
+<script>
+  var findFileURL = "/lynxis/lava-dispatcher/find_file/92fb9b216df0b9772f7e29407d23c06e4a7af571";
+</script>
+
+<div class="page-with-sidebar">
+<div class="layout-nav">
+<div class="container-fluid">
+<div class="scrolling-tabs-container">
+<div class="fade-left">
+<i class="fa fa-angle-left"></i>
+</div>
+<div class="fade-right">
+<i class="fa fa-angle-right"></i>
+</div>
+<ul class="nav-links scrolling-tabs">
+<li class="home"><a title="Project" class="shortcuts-project" href="/lynxis/lava-dispatcher"><span>
+Project
+</span>
+</a></li><li class="active"><a title="Repository" class="shortcuts-tree" href="/lynxis/lava-dispatcher/tree/92fb9b216df0b9772f7e29407d23c06e4a7af571"><span>
+Repository
+</span>
+</a></li><li class=""><a title="Issues" class="shortcuts-issues" href="/lynxis/lava-dispatcher/issues"><span>
+Issues
+<span class="badge count issue_counter">0</span>
+</span>
+</a></li><li class=""><a title="Merge Requests" class="shortcuts-merge_requests" href="/lynxis/lava-dispatcher/merge_requests"><span>
+Merge Requests
+<span class="badge count merge_counter">0</span>
+</span>
+</a></li><li class=""><a title="Pipelines" class="shortcuts-pipelines" href="/lynxis/lava-dispatcher/pipelines"><span>
+Pipelines
+</span>
+</a></li><li class=""><a title="Wiki" class="shortcuts-wiki" href="/lynxis/lava-dispatcher/wikis/home"><span>
+Wiki
+</span>
+</a></li><li class=""><a title="Settings" class="shortcuts-tree" href="/lynxis/lava-dispatcher/settings/members"><span>
+Settings
+</span>
+</a></li><li class="hidden">
+<a title="Activity" class="shortcuts-project-activity" href="/lynxis/lava-dispatcher/activity"><span>
+Activity
+</span>
+</a></li>
+<li class="hidden">
+<a title="Network" class="shortcuts-network" href="/lynxis/lava-dispatcher/network/92fb9b216df0b9772f7e29407d23c06e4a7af571">Graph
+</a></li>
+<li class="hidden">
+<a title="Charts" class="shortcuts-repository-charts" href="/lynxis/lava-dispatcher/graphs/92fb9b216df0b9772f7e29407d23c06e4a7af571/charts">Charts
+</a></li>
+<li class="hidden">
+<a class="shortcuts-new-issue" href="/lynxis/lava-dispatcher/issues/new">Create a new issue
+</a></li>
+<li class="hidden">
+<a title="Jobs" class="shortcuts-builds" href="/lynxis/lava-dispatcher/builds">Jobs
+</a></li>
+<li class="hidden">
+<a title="Commits" class="shortcuts-commits" href="/lynxis/lava-dispatcher/commits/92fb9b216df0b9772f7e29407d23c06e4a7af571">Commits
+</a></li>
+<li class="hidden">
+<a title="Issue Boards" class="shortcuts-issue-boards" href="/lynxis/lava-dispatcher/boards">Issue Boards</a>
+</li>
+</ul>
+</div>
+
+</div>
+</div>
+<div class="content-wrapper page-with-layout-nav">
+<div class="scrolling-tabs-container sub-nav-scroll">
+<div class="fade-left">
+<i class="fa fa-angle-left"></i>
+</div>
+<div class="fade-right">
+<i class="fa fa-angle-right"></i>
+</div>
+
+<div class="nav-links sub-nav scrolling-tabs">
+<ul class="container-fluid container-limited">
+<li class="active"><a href="/lynxis/lava-dispatcher/tree/92fb9b216df0b9772f7e29407d23c06e4a7af571">Files
+</a></li><li class=""><a href="/lynxis/lava-dispatcher/commits/92fb9b216df0b9772f7e29407d23c06e4a7af571">Commits
+</a></li><li class=""><a href="/lynxis/lava-dispatcher/branches">Branches
+</a></li><li class=""><a href="/lynxis/lava-dispatcher/tags">Tags
+</a></li><li class=""><a href="/lynxis/lava-dispatcher/graphs/92fb9b216df0b9772f7e29407d23c06e4a7af571">Contributors
+</a></li><li class=""><a href="/lynxis/lava-dispatcher/network/92fb9b216df0b9772f7e29407d23c06e4a7af571">Graph
+</a></li><li class=""><a href="/lynxis/lava-dispatcher/compare?from=master&amp;to=92fb9b216df0b9772f7e29407d23c06e4a7af571">Compare
+</a></li><li class=""><a href="/lynxis/lava-dispatcher/graphs/92fb9b216df0b9772f7e29407d23c06e4a7af571/charts">Charts
+</a></li></ul>
+</div>
+</div>
+
+<div class="alert-wrapper">
+
+
+<div class="flash-container flash-container-page">
+</div>
+
+
+</div>
+<div class=" ">
+<div class="content" id="content-body">
+
+<div class="container-fluid container-limited">
+
+<div class="tree-holder" id="tree-holder">
+<div class="nav-block">
+<div class="tree-ref-holder">
+<form class="project-refs-form" action="/lynxis/lava-dispatcher/refs/switch" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="destination" id="destination" value="blob" />
+<input type="hidden" name="path" id="path" value="lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml" />
+<div class="dropdown">
+<button class="dropdown-menu-toggle js-project-refs-dropdown" type="button" data-toggle="dropdown" data-selected="92fb9b216df0b9772f7e29407d23c06e4a7af571" data-ref="92fb9b216df0b9772f7e29407d23c06e4a7af571" data-refs-url="/lynxis/lava-dispatcher/refs" data-field-name="ref" data-submit-form-on-click="true"><span class="dropdown-toggle-text ">92fb9b216df0b9772f7e29407d23c06e4a7af571</span><i class="fa fa-chevron-down"></i></button>
+<div class="dropdown-menu dropdown-menu-selectable">
+<div class="dropdown-title"><span>Switch branch/tag</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+<div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search branches and tags" autocomplete="off" /><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+<div class="dropdown-content"></div>
+<div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+</div>
+</div>
+</form>
+</div>
+<ul class="breadcrumb repo-breadcrumb">
+<li>
+<a href="/lynxis/lava-dispatcher/tree/92fb9b216df0b9772f7e29407d23c06e4a7af571">lava-dispatcher
+</a></li>
+<li>
+<a href="/lynxis/lava-dispatcher/tree/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher">lava_dispatcher</a>
+</li>
+<li>
+<a href="/lynxis/lava-dispatcher/tree/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline">pipeline</a>
+</li>
+<li>
+<a href="/lynxis/lava-dispatcher/tree/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline/test">test</a>
+</li>
+<li>
+<a href="/lynxis/lava-dispatcher/tree/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline/test/pipeline_refs">pipeline_refs</a>
+</li>
+<li>
+<a href="/lynxis/lava-dispatcher/blob/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml"><strong>
+qemu-debian-installer.yaml
+</strong>
+</a></li>
+</ul>
+</div>
+<ul class="blob-commit-info hidden-xs">
+<li class="commit flex-list js-toggle-container" id="commit-fe3f2baa">
+<div class="avatar-cell hidden-xs">
+<a href="mailto:neil.williams@linaro.org"><img class="avatar has-tooltip s36 hidden-xs" alt="Neil Williams&#39;s avatar" title="Neil Williams" data-container="body" src="https://secure.gravatar.com/avatar/e9a48b47f9e70bb25c2f8e4327c46f56?s=72&amp;d=identicon" /></a>
+</div>
+<div class="commit-detail">
+<div class="commit-content">
+<a class="commit-row-message item-title" href="/lynxis/lava-dispatcher/commit/fe3f2baa101667f7279eb89b5efd53f8e1eb78b8">Add support for QEMU Debian Installer tests</a>
+<span class="commit-row-message visible-xs-inline">
+&middot;
+fe3f2baa
+</span>
+<a class="text-expander hidden-xs js-toggle-button">...</a>
+<pre class="commit-row-description js-toggle-content">&#x000A;Create an empty image file to be passed alongside the ISO&#x000A;with support for automated installation using a preseed&#x000A;file on the QEMU command line.&#x000A;Add support strings for Debian Installer to deployment_data.&#x000A;Custom handling for QEMU rebooting after the install completes.&#x000A;Include fix for rebase error introduced in kernel log messages&#x000A;with connection.prompt_str when using autologin.&#x000A;Use the guestfs support for test shell overlay in installed&#x000A;system.&#x000A;&#x000A;Change-Id: I44701e48cafe05269d15fbbb5f21e0dfaec66fee</pre>
+<div class="commiter">
+<a class="commit-author-link has-tooltip" title="neil.williams@linaro.org" href="mailto:neil.williams@linaro.org">Neil Williams</a>
+committed
+<time class="js-timeago" title="May 31, 2016 10:10am" datetime="2016-05-31T10:10:15Z" data-toggle="tooltip" data-placement="top" data-container="body">May 31, 2016</time>
+</div>
+</div>
+<div class="commit-actions flex-row hidden-xs">
+<button class="btn btn-clipboard btn-transparent" data-toggle="tooltip" data-placement="bottom" data-container="body" data-clipboard-text="fe3f2baa101667f7279eb89b5efd53f8e1eb78b8" data-title="Copy commit SHA to clipboard" type="button" title="Copy commit SHA to clipboard"><i aria-hidden="true" class="fa fa-clipboard"></i></button>
+<a class="commit-short-id btn btn-transparent" href="/lynxis/lava-dispatcher/commit/fe3f2baa101667f7279eb89b5efd53f8e1eb78b8">fe3f2baa</a>
+<a class="btn btn-default" href="/lynxis/lava-dispatcher/tree/fe3f2baa101667f7279eb89b5efd53f8e1eb78b8">Browse Files</a>
+</div>
+</div>
+</li>
+
+</ul>
+<div class="blob-content-holder" id="blob-content-holder">
+<article class="file-holder">
+<div class="js-file-title file-title-flex-parent">
+<div class="file-header-content">
+<i class="fa fa-file-text-o fa-fw"></i>
+<strong class="file-title-name">
+qemu-debian-installer.yaml
+</strong>
+<small>
+2.5 KB
+</small>
+</div>
+<div class="file-actions hidden-xs">
+<div class="btn-group" role="group"><a class="btn btn-sm" target="_blank" href="/lynxis/lava-dispatcher/raw/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml">Raw</a><a class="btn btn-sm" href="/lynxis/lava-dispatcher/blame/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml">Blame</a><a class="btn btn-sm" href="/lynxis/lava-dispatcher/commits/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml">History</a><a class="btn btn-sm js-data-file-blob-permalink-url" href="/lynxis/lava-dispatcher/blob/92fb9b216df0b9772f7e29407d23c06e4a7af571/lava_dispatcher/pipeline/test/pipeline_refs/qemu-debian-installer.yaml">Permalink</a></div>
+
+</div>
+</div>
+<div class="file-content code js-syntax-highlight">
+<div class="line-numbers">
+<a class="diff-line-num" data-line-number="1" href="#L1" id="L1">
+<i class="fa fa-link"></i>
+1
+</a>
+<a class="diff-line-num" data-line-number="2" href="#L2" id="L2">
+<i class="fa fa-link"></i>
+2
+</a>
+<a class="diff-line-num" data-line-number="3" href="#L3" id="L3">
+<i class="fa fa-link"></i>
+3
+</a>
+<a class="diff-line-num" data-line-number="4" href="#L4" id="L4">
+<i class="fa fa-link"></i>
+4
+</a>
+<a class="diff-line-num" data-line-number="5" href="#L5" id="L5">
+<i class="fa fa-link"></i>
+5
+</a>
+<a class="diff-line-num" data-line-number="6" href="#L6" id="L6">
+<i class="fa fa-link"></i>
+6
+</a>
+<a class="diff-line-num" data-line-number="7" href="#L7" id="L7">
+<i class="fa fa-link"></i>
+7
+</a>
+<a class="diff-line-num" data-line-number="8" href="#L8" id="L8">
+<i class="fa fa-link"></i>
+8
+</a>
+<a class="diff-line-num" data-line-number="9" href="#L9" id="L9">
+<i class="fa fa-link"></i>
+9
+</a>
+<a class="diff-line-num" data-line-number="10" href="#L10" id="L10">
+<i class="fa fa-link"></i>
+10
+</a>
+<a class="diff-line-num" data-line-number="11" href="#L11" id="L11">
+<i class="fa fa-link"></i>
+11
+</a>
+<a class="diff-line-num" data-line-number="12" href="#L12" id="L12">
+<i class="fa fa-link"></i>
+12
+</a>
+<a class="diff-line-num" data-line-number="13" href="#L13" id="L13">
+<i class="fa fa-link"></i>
+13
+</a>
+<a class="diff-line-num" data-line-number="14" href="#L14" id="L14">
+<i class="fa fa-link"></i>
+14
+</a>
+<a class="diff-line-num" data-line-number="15" href="#L15" id="L15">
+<i class="fa fa-link"></i>
+15
+</a>
+<a class="diff-line-num" data-line-number="16" href="#L16" id="L16">
+<i class="fa fa-link"></i>
+16
+</a>
+<a class="diff-line-num" data-line-number="17" href="#L17" id="L17">
+<i class="fa fa-link"></i>
+17
+</a>
+<a class="diff-line-num" data-line-number="18" href="#L18" id="L18">
+<i class="fa fa-link"></i>
+18
+</a>
+<a class="diff-line-num" data-line-number="19" href="#L19" id="L19">
+<i class="fa fa-link"></i>
+19
+</a>
+<a class="diff-line-num" data-line-number="20" href="#L20" id="L20">
+<i class="fa fa-link"></i>
+20
+</a>
+<a class="diff-line-num" data-line-number="21" href="#L21" id="L21">
+<i class="fa fa-link"></i>
+21
+</a>
+<a class="diff-line-num" data-line-number="22" href="#L22" id="L22">
+<i class="fa fa-link"></i>
+22
+</a>
+<a class="diff-line-num" data-line-number="23" href="#L23" id="L23">
+<i class="fa fa-link"></i>
+23
+</a>
+<a class="diff-line-num" data-line-number="24" href="#L24" id="L24">
+<i class="fa fa-link"></i>
+24
+</a>
+<a class="diff-line-num" data-line-number="25" href="#L25" id="L25">
+<i class="fa fa-link"></i>
+25
+</a>
+<a class="diff-line-num" data-line-number="26" href="#L26" id="L26">
+<i class="fa fa-link"></i>
+26
+</a>
+<a class="diff-line-num" data-line-number="27" href="#L27" id="L27">
+<i class="fa fa-link"></i>
+27
+</a>
+<a class="diff-line-num" data-line-number="28" href="#L28" id="L28">
+<i class="fa fa-link"></i>
+28
+</a>
+<a class="diff-line-num" data-line-number="29" href="#L29" id="L29">
+<i class="fa fa-link"></i>
+29
+</a>
+<a class="diff-line-num" data-line-number="30" href="#L30" id="L30">
+<i class="fa fa-link"></i>
+30
+</a>
+<a class="diff-line-num" data-line-number="31" href="#L31" id="L31">
+<i class="fa fa-link"></i>
+31
+</a>
+<a class="diff-line-num" data-line-number="32" href="#L32" id="L32">
+<i class="fa fa-link"></i>
+32
+</a>
+<a class="diff-line-num" data-line-number="33" href="#L33" id="L33">
+<i class="fa fa-link"></i>
+33
+</a>
+<a class="diff-line-num" data-line-number="34" href="#L34" id="L34">
+<i class="fa fa-link"></i>
+34
+</a>
+<a class="diff-line-num" data-line-number="35" href="#L35" id="L35">
+<i class="fa fa-link"></i>
+35
+</a>
+<a class="diff-line-num" data-line-number="36" href="#L36" id="L36">
+<i class="fa fa-link"></i>
+36
+</a>
+<a class="diff-line-num" data-line-number="37" href="#L37" id="L37">
+<i class="fa fa-link"></i>
+37
+</a>
+<a class="diff-line-num" data-line-number="38" href="#L38" id="L38">
+<i class="fa fa-link"></i>
+38
+</a>
+<a class="diff-line-num" data-line-number="39" href="#L39" id="L39">
+<i class="fa fa-link"></i>
+39
+</a>
+<a class="diff-line-num" data-line-number="40" href="#L40" id="L40">
+<i class="fa fa-link"></i>
+40
+</a>
+<a class="diff-line-num" data-line-number="41" href="#L41" id="L41">
+<i class="fa fa-link"></i>
+41
+</a>
+<a class="diff-line-num" data-line-number="42" href="#L42" id="L42">
+<i class="fa fa-link"></i>
+42
+</a>
+<a class="diff-line-num" data-line-number="43" href="#L43" id="L43">
+<i class="fa fa-link"></i>
+43
+</a>
+<a class="diff-line-num" data-line-number="44" href="#L44" id="L44">
+<i class="fa fa-link"></i>
+44
+</a>
+<a class="diff-line-num" data-line-number="45" href="#L45" id="L45">
+<i class="fa fa-link"></i>
+45
+</a>
+<a class="diff-line-num" data-line-number="46" href="#L46" id="L46">
+<i class="fa fa-link"></i>
+46
+</a>
+<a class="diff-line-num" data-line-number="47" href="#L47" id="L47">
+<i class="fa fa-link"></i>
+47
+</a>
+<a class="diff-line-num" data-line-number="48" href="#L48" id="L48">
+<i class="fa fa-link"></i>
+48
+</a>
+</div>
+<div class="blob-content" data-blob-id="af9ff4db3e0566aefd758662cd912e0ca6130b34">
+<pre class="code highlight"><code><span id="LC1" class="line"><span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">actions.deploy.iso.DeployIsoAction</span></span>
+<span id="LC2" class="line">  <span class="na">name</span><span class="pi">:</span> <span class="s">deploy-iso-installer</span></span>
+<span id="LC3" class="line">  <span class="na">pipeline</span><span class="pi">:</span></span>
+<span id="LC4" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.iso.IsoEmptyImage</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">prepare-empty-image</span><span class="pi">}</span></span>
+<span id="LC5" class="line">  <span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">actions.deploy.download.DownloaderAction</span></span>
+<span id="LC6" class="line">    <span class="na">name</span><span class="pi">:</span> <span class="s">download_retry</span></span>
+<span id="LC7" class="line">    <span class="na">pipeline</span><span class="pi">:</span></span>
+<span id="LC8" class="line">    <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.download.HttpDownloadAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">http_download</span><span class="pi">}</span></span>
+<span id="LC9" class="line">  <span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">actions.deploy.download.DownloaderAction</span></span>
+<span id="LC10" class="line">    <span class="na">name</span><span class="pi">:</span> <span class="s">download_retry</span></span>
+<span id="LC11" class="line">    <span class="na">pipeline</span><span class="pi">:</span></span>
+<span id="LC12" class="line">    <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.download.HttpDownloadAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">http_download</span><span class="pi">}</span></span>
+<span id="LC13" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.iso.IsoPullInstaller</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">pull-installer-files</span><span class="pi">}</span></span>
+<span id="LC14" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.iso.QemuCommandLine</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">prepare-qemu-commands</span><span class="pi">}</span></span>
+<span id="LC15" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.overlay.CustomisationAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">customise</span><span class="pi">}</span></span>
+<span id="LC16" class="line">  <span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">actions.deploy.overlay.OverlayAction</span></span>
+<span id="LC17" class="line">    <span class="na">name</span><span class="pi">:</span> <span class="s">lava-overlay</span></span>
+<span id="LC18" class="line">    <span class="na">pipeline</span><span class="pi">:</span></span>
+<span id="LC19" class="line">    <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.overlay.VlandOverlayAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">lava-vland-overlay</span><span class="pi">}</span></span>
+<span id="LC20" class="line">    <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.overlay.MultinodeOverlayAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">lava-multinode-overlay</span><span class="pi">}</span></span>
+<span id="LC21" class="line">    <span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">actions.deploy.testdef.TestDefinitionAction</span></span>
+<span id="LC22" class="line">      <span class="na">name</span><span class="pi">:</span> <span class="s">test-definition</span></span>
+<span id="LC23" class="line">      <span class="na">pipeline</span><span class="pi">:</span></span>
+<span id="LC24" class="line">      <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.testdef.GitRepoAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">git-repo-action</span><span class="pi">}</span></span>
+<span id="LC25" class="line">      <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.testdef.TestOverlayAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">test-overlay</span><span class="pi">}</span></span>
+<span id="LC26" class="line">      <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.testdef.TestInstallAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">test-install-overlay</span><span class="pi">}</span></span>
+<span id="LC27" class="line">      <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.testdef.TestRunnerAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">test-runscript-overlay</span><span class="pi">}</span></span>
+<span id="LC28" class="line">    <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.overlay.CompressOverlay</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">compress-overlay</span><span class="pi">}</span></span>
+<span id="LC29" class="line">    <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.overlay.PersistentNFSOverlay</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">persistent-nfs-overlay</span><span class="pi">}</span></span>
+<span id="LC30" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.apply_overlay.ApplyOverlayGuest</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">apply-overlay-guest</span><span class="pi">}</span></span>
+<span id="LC31" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.deploy.environment.DeployDeviceEnvironment</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">deploy-device-env</span><span class="pi">}</span></span>
+<span id="LC32" class="line"><span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">actions.boot.iso.BootIsoInstallerAction</span></span>
+<span id="LC33" class="line">  <span class="na">name</span><span class="pi">:</span> <span class="s">boot_installer_iso</span></span>
+<span id="LC34" class="line">  <span class="na">pipeline</span><span class="pi">:</span></span>
+<span id="LC35" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.boot.iso.IsoCommandLine</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">execute-installer-command</span><span class="pi">}</span></span>
+<span id="LC36" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.boot.iso.MonitorInstallerSession</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">monitor-installer-connection</span><span class="pi">}</span></span>
+<span id="LC37" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.boot.iso.IsoRebootAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">reboot-into-installed</span><span class="pi">}</span></span>
+<span id="LC38" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.boot.AutoLoginAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">auto-login-action</span><span class="pi">}</span></span>
+<span id="LC39" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">shell.ExpectShellSession</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">expect-shell-connection</span><span class="pi">}</span></span>
+<span id="LC40" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.boot.environment.ExportDeviceEnvironment</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">export-device-env</span><span class="pi">}</span></span>
+<span id="LC41" class="line"><span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">actions.test.shell.TestShellRetry</span></span>
+<span id="LC42" class="line">  <span class="na">name</span><span class="pi">:</span> <span class="s">lava-test-retry</span></span>
+<span id="LC43" class="line">  <span class="na">pipeline</span><span class="pi">:</span></span>
+<span id="LC44" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">actions.test.shell.TestShellAction</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">lava-test-shell</span><span class="pi">}</span></span>
+<span id="LC45" class="line"><span class="pi">-</span> <span class="na">class</span><span class="pi">:</span> <span class="s">power.FinalizeAction</span></span>
+<span id="LC46" class="line">  <span class="na">name</span><span class="pi">:</span> <span class="s">finalize</span></span>
+<span id="LC47" class="line">  <span class="na">pipeline</span><span class="pi">:</span></span>
+<span id="LC48" class="line">  <span class="pi">-</span> <span class="pi">{</span><span class="nv">class</span><span class="pi">:</span> <span class="nv">power.PowerOff</span><span class="pi">,</span> <span class="nv">name</span><span class="pi">:</span> <span class="nv">power_off</span><span class="pi">}</span></span></code></pre>
+</div>
+</div>
+
+
+</article>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+</html>
+

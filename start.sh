@@ -36,6 +36,7 @@ service apache2 reload #added after the website not running a few times on boot
 
 # Does not run, so we'll start it up
 service lava-server restart
+service ssh restart
 
 # Just for fun we could check what's really running
 # service --status-all | grep lava

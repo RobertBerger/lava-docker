@@ -33,8 +33,8 @@ sudo modprobe tun
 # run the image
 #echo "+ ID=\$(docker run -v ${HOME}/docker-nonvol-scripts:/home/genius/nonvol-scripts -t -i -d -p 22 --privileged ${IMAGE_NAME} /sbin/my_init -- bash -l)"
 #ID=$(docker run -v ${HOME}/docker-nonvol-scripts:/home/genius/nonvol-scripts -t -i -d -p 22 --privileged ${IMAGE_NAME} /sbin/my_init -- bash -l)
-echo "+ ID=\$(docker run -it -v /boot:/boot -v /lib/modules:/lib/modules -v $PWD/fileshare:/opt/fileshare -v /dev/bus/usb:/dev/bus/usb -v /PATH/TO/id_rsa_lava.pub:/home/lava/.ssh/authorized_keys:ro --device=/dev/ttyUSB0 -p 8000:80 -p 2022:22 -h ${MYHOSTNAME} --privileged ${IMAGE_NAME})"
-ID=$(docker run -it -v /boot:/boot -v /lib/modules:/lib/modules -v $PWD/fileshare:/opt/fileshare -v /dev/bus/usb:/dev/bus/usb -v /PATH/TO/id_rsa_lava.pub:/home/lava/.ssh/authorized_keys:ro --device=/dev/ttyUSB0 -p 8000:80 -p 2022:22 -h ${MYHOSTNAME} --privileged ${IMAGE_NAME})
+echo "+ ID=\$(sudo docker run -it -v /boot:/boot -v /lib/modules:/lib/modules -v $PWD/fileshare:/opt/fileshare -v /dev/bus/usb:/dev/bus/usb -v /home/lava/docker.ssh:/home/lava/.ssh --device=/dev/ttyUSB0 -p 8000:80 -p 2022:22 -h ${MYHOSTNAME} --privileged ${IMAGE_NAME})"
+ID=$(sudo docker run -it -v /boot:/boot -v /lib/modules:/lib/modules -v $PWD/fileshare:/opt/fileshare -v /dev/bus/usb:/dev/bus/usb -v /home/lava/docker.ssh:/home/lava/.ssh -v /home/lava/docker.postgresql:/var/lib/postgresql-new --device=/dev/ttyUSB0 -p 8000:80 -p 2022:22 -h ${MYHOSTNAME} --privileged ${IMAGE_NAME})
 
 echo "+ ID ${ID}"
 

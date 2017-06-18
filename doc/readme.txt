@@ -106,5 +106,93 @@ https://staging.validation.linaro.org/static/docs/v2/first-job.html#index-0
 service lava-server start
 
 
+--------
+
+Create a lava user on the host PC, create ssh keys, use them in the docker container so we can use this user to submit test jobs?
+
+-->
+
+on the host create lava user:
+
+sudo useradd -c "Lava User" -m -s "/bin/bash" lava
+
+sudo passwd lava
+
+ssh lava@localhost
+
+ssh-keygen -t rsa
+
+<--
+
+--> 
+
+as root in the docker container:
+
+passed lava
+
+<--
+
+-->
+
+log in on host as lava and copy key stuff to docker container
+
+ssh-copy-id lava@192.168.42.106 -p 2022
+
+now it should work without passwd
+
+ssh lava@192.168.42.106 -p 2022
+
+<--
+
+ssh lava@192.168.42.106 -p 2022
+
+lava@lava-docker:~$ lava-tool auth-list
+No tokens found
+
+As admin create a new user e.g. lava/lava@localhost
+
+Make sure this user is allowed to submit test jobs.
+
+log in as lava user in the web interface and create a token
+
+Token management page:
+
+http://192.168.42.106:8000/api/tokens/
+
+lava-tool auth-add http://lava@localhost/RPC2/
+
+lava-tool auth-list
+Endpoint URL: http://localhost/RPC2/
+Tokens found for users: lava
+------------
+
+lava-tool auth-config --default-user http://lava@localhost/RPC2/
+
+lava-tool auth-config --endpoint-shortcut staging http://lava@localhost/RPC2
+
+lava-tool auth-list
+Endpoint URL: http://localhost/RPC2/
+endpoint-shortcut: staging
+default-user: lava
+Tokens found for users: lava
+
+submit a test job:
+
+cd /opt/fileshare/testcases/yaml
+
+lava-tool submit-job staging qemu-pipeline-first-job.yaml
+
+
+https://validation.linaro.org/static/docs/v2/lava-tool.html
+
+
+===================
+
+postgreql database:
+
+ps auxw |  grep postgres | grep -- -D
+
+vim /etc/postgresql/9.6/main/postgresql.conf
+
 
 

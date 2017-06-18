@@ -140,11 +140,22 @@ COPY etc/lava-server/dispatcher-config/devices/* /etc/lava-server/dispatcher-con
 COPY add-kvm-to-lava.sh add-qemu-to-lava.sh /home/lava/bin/
 
 EXPOSE 22 80
+
+COPY fix-stuff.sh .
+COPY fix-postgresql.sh .
+COPY default-postgresql.sh .
+
 # add devices after the system starts running to deal with slave/master hostname registration
 CMD /start.sh \
  && /home/lava/bin/add-qemu-to-lava.sh 2 \
  && /home/lava/bin/add-kvm-to-lava.sh 2 \
+ && /fix-stuff.sh \
+ && apt-get update \
+ && update-command-not-found \
  && bash
+
+# && apt-get update \
+# && update-command-not-found \
 
 # don't want to submit any job just for fun (this would not give error but possiblt stuck the job queue
 # && /home/lava/bin/submit.py -k /home/lava/bin/apikey.txt /home/lava/bin/kvm-basic.json \
